@@ -44,7 +44,7 @@ sub has_prereqs {
     $cfg or return [
         500, "Can't open dist.ini: ".join(", ", @Config::IniFiles::errors)];
 
-    my $err;
+    my @errs;
     for my $section (grep {
         m!^prereqs (?: \s*/\s* .+)?$!ix} $cfg->Sections) {
       MOD:
@@ -55,41 +55,41 @@ sub has_prereqs {
                 if ($mod eq 'perl') {
                     # do nothing
                 } elsif (!module_path($mod)) {
-                    $err++;
-                    $log->errorf("Missing prerequisite: %s", $mod);
+                    push @errs, {
+                        module  => $mod,
+                        message => "Missing"};
                 }
             } else {
                 my $iv;
                 if ($mod eq 'perl') {
                     $iv = $^V; $iv =~ s/^v//;
                     unless (Sort::Versions::versioncmp($iv, $v) >= 0) {
-                        $err++;
-                        $log->errorf("Perl version too old (%s, needs %s)",
-                                     $iv, $v);
+                        push @errs, {
+                            module  => $mod,
+                            message => "Version too old ($iv, needs $v)"};
                     }
                     next MOD;
                 }
                 my $modp = $mod; $modp =~ s!::!/!g; $modp .= ".pm";
                 unless ($INC{$modp} || eval { require $modp; 1 }) {
-                    $err++;
-                    $log->errorf("Missing prerequisite: %s", $mod);
+                    push @errs, {
+                        module  => $mod,
+                        message => "Missing"};
                     next MOD;
                 }
                 no strict 'refs'; no warnings;
                 my $iv = ${"$mod\::VERSION"};
                 unless ($iv && Sort::Versions::versioncmp($iv, $v) >= 0) {
-                    $err++;
-                    $log->errorf("Installed version too old: %s (%s, needs %s)",
-                                 $mod, $iv, $v);
+                    push @errs, {
+                        module  => $mod,
+                        message => "Version too old ($iv, needs $v)"};
                 }
             }
         }
     }
 
-    $err ?
-        [500, "Some prerequisites unmet", undef,
-         {"cmdline.display_result"=>0}] :
-            [200, "OK"];
+    [200, @errs ? "Some prerequisites unmet" : "OK", \@errs,
+     {"cmdline.exit_code"=>@errs ? 1:0}];
 }
 
 1;
