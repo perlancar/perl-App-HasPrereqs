@@ -1,5 +1,10 @@
 Revision history for App-HasPrereqs
 
+0.02    2012-08-28 (SHARYANTO)
+
+        Return detailed data, for scriptability.
+
+
 0.01    2012-08-28 (SHARYANTO)
 
         First release.
