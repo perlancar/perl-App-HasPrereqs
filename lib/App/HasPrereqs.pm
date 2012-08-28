@@ -89,7 +89,7 @@ sub has_prereqs {
     }
 
     [200, @errs ? "Some prerequisites unmet" : "OK", \@errs,
-     {"cmdline.exit_code"=>@errs ? 1:0}];
+     {"cmdline.exit_code"=>@errs ? 200:0}];
 }
 
 1;
