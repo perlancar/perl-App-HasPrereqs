@@ -6,8 +6,7 @@ use warnings;
 use Log::Any qw($log);
 
 use Config::IniFiles;
-use File::Find;
-use File::Which;
+use Module::Path qw(module_path);
 use Sort::Versions;
 
 our %SPEC;
@@ -30,8 +29,6 @@ $SPEC{has_prereqs} = {
     },
 };
 sub has_prereqs {
-    require Module::Path;
-    require Sort::Versions;
 
     my %args = @_;
 
@@ -57,7 +54,7 @@ sub has_prereqs {
             if ($v eq '0') {
                 if ($mod eq 'perl') {
                     # do nothing
-                } elsif (!Module::Path::module_path($mod)) {
+                } elsif (!module_path($mod)) {
                     $err++;
                     $log->errorf("Missing prerequisite: %s", $mod);
                 }
