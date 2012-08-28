@@ -1,0 +1,34 @@
+#!/usr/bin/perl
+
+use 5.010;
+use strict;
+use warnings;
+
+use Perinci::CmdLine;
+
+# VERSION
+
+Perinci::CmdLine->new(url => '/App/HasPrereqs/has_prereqs')->run;
+
+# ABSTRACT: Check whether your Perl installation has prerequisites in dist.ini
+# PODNAME: has-prereqs
+
+=head1 SYNOPSIS
+
+To use, run the program on your top-level distribution dir, where C<dist.ini> is
+located.
+
+ % cd Your-Module
+ % has-prereqs
+
+On success, nothing will be output.
+
+On errors, error messages will be printed, for example:
+
+ [455] Missing prerequisites: Foo
+ [456] Installed version too old: Bar (1.01, needs 1.12)
+ ERROR 500: Some prerequisites unmet
+
+For more options, type C<has-prereqs -h>.
+
+=cut
