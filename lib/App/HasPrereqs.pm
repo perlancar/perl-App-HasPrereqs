@@ -57,6 +57,7 @@ sub has_prereqs {
                 } elsif (!module_path($mod)) {
                     push @errs, {
                         module  => $mod,
+                        needed_version => $v,
                         message => "Missing"};
                 }
             } else {
@@ -66,6 +67,8 @@ sub has_prereqs {
                     unless (Sort::Versions::versioncmp($iv, $v) >= 0) {
                         push @errs, {
                             module  => $mod,
+                            has_version => $iv,
+                            needed_version => $v,
                             message => "Version too old ($iv, needs $v)"};
                     }
                     next MOD;
@@ -74,6 +77,7 @@ sub has_prereqs {
                 unless ($INC{$modp} || eval { require $modp; 1 }) {
                     push @errs, {
                         module  => $mod,
+                        needed_version => $v,
                         message => "Missing"};
                     next MOD;
                 }
@@ -82,6 +86,8 @@ sub has_prereqs {
                 unless ($iv && Sort::Versions::versioncmp($iv, $v) >= 0) {
                     push @errs, {
                         module  => $mod,
+                        has_version => $iv,
+                        needed_version => $v,
                         message => "Version too old ($iv, needs $v)"};
                 }
             }
