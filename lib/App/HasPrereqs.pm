@@ -1,5 +1,8 @@
 package App::HasPrereqs;
 
+# DATE
+# VERSION
+
 use 5.010001;
 use strict;
 use warnings;
@@ -13,8 +16,6 @@ our %SPEC;
 require Exporter;
 our @ISA       = qw(Exporter);
 our @EXPORT_OK = qw(has_prereqs);
-
-# VERSION
 
 $SPEC{has_prereqs} = {
     v => 1.1,
@@ -99,7 +100,7 @@ sub has_prereqs {
 }
 
 1;
-#ABSTRACT: Check whether your Perl installation has prerequisites in dist.ini
+#ABSTRACT:
 
 =head1 SYNOPSIS
 
