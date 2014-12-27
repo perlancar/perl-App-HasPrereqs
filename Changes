@@ -1,5 +1,12 @@
 Revision history for App-HasPrereqs
 
+0.06    2014-12-27 (PERLANCAR)
+
+	- No functional changes.
+
+	- Replace Module::Path with Module::Path::More.
+
+
 0.05     2014-08-16 (SHARYANTO) - Happy 19th CPAN Day!
 
          - [build] CLI scripts are now generated automatically using
