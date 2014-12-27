@@ -9,7 +9,7 @@ use warnings;
 use Log::Any qw($log);
 
 use Config::IniFiles;
-use Module::Path qw(module_path);
+use Module::Path::More qw(module_path);
 use Sort::Versions;
 
 our %SPEC;
@@ -55,7 +55,7 @@ sub has_prereqs {
             if ($v eq '0') {
                 if ($mod eq 'perl') {
                     # do nothing
-                } elsif (!module_path($mod)) {
+                } elsif (!module_path(module => $mod)) {
                     push @errs, {
                         module  => $mod,
                         needed_version => $v,
