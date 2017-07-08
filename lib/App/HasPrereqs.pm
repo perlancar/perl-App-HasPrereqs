@@ -6,7 +6,7 @@ package App::HasPrereqs;
 use 5.010001;
 use strict;
 use warnings;
-use Log::Any::IfLOG qw($log);
+use Log::ger;
 
 use Config::IniFiles;
 use Module::Path::More qw(module_path);
@@ -51,7 +51,7 @@ sub has_prereqs {
       MOD:
         for my $mod ($cfg->Parameters($section)) {
             my $v = $cfg->val($section, $mod);
-            $log->infof("Checking prerequisite: %s=%s ...", $mod, $v);
+            log_info("Checking prerequisite: %s=%s ...", $mod, $v);
             if ($v eq '0') {
                 if ($mod eq 'perl') {
                     # do nothing
