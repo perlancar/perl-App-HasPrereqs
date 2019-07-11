@@ -1,11 +1,11 @@
-0.10    2017-07-08 (PERLANCAR)
+0.10    2017-07-08  Released-By: PERLANCAR
 
 	- No functional changes.
 
 	- Replace Log::Any with Log::ger.
 
 
-0.09    2016-01-18 (PERLANCAR)
+0.09    2016-01-18  Released-By: PERLANCAR
 
         - No functional changes.
 
@@ -14,7 +14,7 @@
         - Bump prereq version Log::Any::IfLOG to 0.07.
 
 
-0.08    2015-09-03 (PERLANCAR)
+0.08    2015-09-03  Released-By: PERLANCAR
 
 	- No functional changes.
 
@@ -23,14 +23,14 @@
 	  requirement.
 
 
-0.07    2015-08-17 (PERLANCAR)
+0.07    2015-08-17  Released-By: PERLANCAR
 
 	- No functional changes.
 
 	- Switch from Log::Any to Log::Any::IfLOG.
 
 
-0.06    2014-12-27 (PERLANCAR)
+0.06    2014-12-27  Released-By: PERLANCAR
 
 	- No functional changes.
 
@@ -44,7 +44,7 @@
            generated script is not as polished as it should be. Stay tuned.
 
 
-0.04     2014-07-22 (SHARYANTO)
+0.04     2014-07-22  Released-By: SHARYANTO
 
          - No functional changes.
 
@@ -52,16 +52,16 @@
            Perinci::CmdLine::Any to reduce size of dependencies.
 
 
-0.03    2012-08-29 (SHARYANTO)
+0.03    2012-08-29  Released-By: SHARYANTO
 
         - Return version information (has_version and needed_version) in result.
 
 
-0.02    2012-08-28 (SHARYANTO)
+0.02    2012-08-28  Released-By: SHARYANTO
 
         - Return detailed data, for scriptability.
 
 
-0.01    2012-08-28 (SHARYANTO)
+0.01    2012-08-28  Released-By: SHARYANTO
 
         - First release.
